@@ -37,11 +37,15 @@ public class UserController {
     @ResponseBody
     public String saveUser(@ModelAttribute UserForm userForm, BindingResult bindingResult) {
         userFormValidator.validate(userForm, bindingResult);
+
+        // Ajax response delay for show loading modal popup
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        //
+
         if (bindingResult.hasErrors()) {
             return UserUtil.toJsonFailObject(bindingResult);
         }
